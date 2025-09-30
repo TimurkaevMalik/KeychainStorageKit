@@ -1,0 +1,24 @@
+{
+  "originHash" : "c739b5630240bd8dcad2294f639b987f57776c2febd5759b636f2ec469d128b9",
+  "pins" : [
+    {
+      "identity" : "loggingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TimurkaevMalik/LoggingKit.git",
+      "state" : {
+        "revision" : "d2ce234ac6df402d0f2b965adc6952fa63536a73",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "valet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/square/Valet.git",
+      "state" : {
+        "revision" : "05c9e514fbd352a6866877ca31326b4e0b7d6d01",
+        "version" : "5.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
