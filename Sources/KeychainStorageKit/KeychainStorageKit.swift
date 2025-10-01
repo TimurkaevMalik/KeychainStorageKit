@@ -10,7 +10,7 @@ public protocol KeychainStorageProtocol {
     func removeAll() throws(CustomError)
 }
 
-final class ValetStorage: KeychainStorageProtocol {
+public final class ValetStorage: KeychainStorageProtocol {
     
     private let logger: LoggerProtocol?
     private let valet: Valet
@@ -24,7 +24,7 @@ final class ValetStorage: KeychainStorageProtocol {
         self.valet = Valet.valet(with: id, accessibility: accessibility.valetValue)
     }
     
-    func set<T: Encodable>(_ value: T, forKey key: String) throws(CustomError) {
+    public func set<T: Encodable>(_ value: T, forKey key: String) throws(CustomError) {
         do {
             let data = try JSONEncoder().encode(value)
             try valet.setObject(data, forKey: key)
@@ -35,7 +35,7 @@ final class ValetStorage: KeychainStorageProtocol {
         }
     }
     
-    func loadValue<T: Decodable>(forKey key: String) throws(CustomError) -> T? {
+    public func loadValue<T: Decodable>(forKey key: String) throws(CustomError) -> T? {
         
         do {
             let data = try valet.object(forKey: key)
@@ -49,7 +49,7 @@ final class ValetStorage: KeychainStorageProtocol {
         }
     }
     
-    func removeObject(forKey key: String) throws(CustomError) {
+    public func removeObject(forKey key: String) throws(CustomError) {
         do {
             try valet.removeObject(forKey: key)
         } catch {
@@ -59,7 +59,7 @@ final class ValetStorage: KeychainStorageProtocol {
         }
     }
     
-    func removeAll() throws(CustomError) {
+    public func removeAll() throws(CustomError) {
         do {
             try valet.removeAllObjects()
         } catch {
@@ -68,8 +68,10 @@ final class ValetStorage: KeychainStorageProtocol {
             }
         }
     }
-    
-    private func map(error: Error) -> CustomError? {
+}
+
+private extension ValetStorage {
+    func map(error: Error) -> CustomError? {
         if let error = error as? KeychainError {
             
             switch error {

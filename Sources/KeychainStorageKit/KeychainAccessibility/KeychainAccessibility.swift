@@ -10,5 +10,3 @@ import Foundation
 enum KeychainAccessibility {
     case whenUnlockedThisDeviceOnly
 }
-
-
