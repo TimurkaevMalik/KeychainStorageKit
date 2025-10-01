@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum KeychainAccessibility {
+public enum KeychainAccessibility {
     case whenUnlockedThisDeviceOnly
 }

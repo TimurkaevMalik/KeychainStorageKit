@@ -15,7 +15,7 @@ public final class ValetStorage: KeychainStorageProtocol {
     private let logger: LoggerProtocol?
     private let valet: Valet
     
-    init(
+    public init(
         id: Identifier,
         accessibility: KeychainAccessibility,
         logger: LoggerProtocol?
