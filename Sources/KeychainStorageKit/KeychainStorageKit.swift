@@ -15,13 +15,17 @@ public final class ValetStorage: KeychainStorageProtocol {
     private let logger: LoggerProtocol?
     private let valet: Valet
     
-    public init(
-        id: Identifier,
+    public init?(
+        id: String,
         accessibility: KeychainAccessibility,
         logger: LoggerProtocol?
     ) {
         self.logger = logger
-        self.valet = Valet.valet(with: id, accessibility: accessibility.valetValue)
+        if let identifier = Identifier(nonEmpty: id) {
+            self.valet = Valet.valet(with: identifier, accessibility: accessibility.valetValue)
+        } else {
+            return nil
+        }
     }
     
     public func set<T: Encodable>(_ value: T, forKey key: String) throws(CustomError) {

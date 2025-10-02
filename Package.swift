@@ -96,7 +96,7 @@ fileprivate extension Package.Dependency {
         switch package.requirement {
             
         case .version:
-                return .package(url: url, from: .init(string: requirement))
+            return .package(url: url, from: .init(string: requirement))
         case .branch:
                 return .package(url: url, branch: requirement)
         }
