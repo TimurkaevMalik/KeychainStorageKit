@@ -4,8 +4,13 @@ import Valet
 
 public protocol KeychainStorageProtocol {
     typealias CustomError = KeychainServiceError
-    func set<T: Encodable>(_ value: T, forKey key: String) throws(CustomError)
-    func loadValue<T: Decodable>(forKey key: String) throws(CustomError) -> T?
+    
+    func set<T: Encodable>(object: T, forKey key: String) throws(CustomError)
+    func set(string: String, forKey key: String) throws(CustomError)
+    
+    func object<T: Decodable>(forKey key: String) throws(CustomError) -> T?
+    func string(forKey key: String) throws(CustomError) -> String?
+    
     func removeObject(forKey key: String) throws(CustomError)
     func removeAll() throws(CustomError)
 }
@@ -20,17 +25,18 @@ public final class ValetStorage: KeychainStorageProtocol {
         accessibility: KeychainAccessibility,
         logger: LoggerProtocol?
     ) {
+        guard let identifier = Identifier(nonEmpty: id) else { return nil }
+        
         self.logger = logger
-        if let identifier = Identifier(nonEmpty: id) {
-            self.valet = Valet.valet(with: identifier, accessibility: accessibility.valetValue)
-        } else {
-            return nil
-        }
+        valet = Valet.valet(
+            with: identifier,
+            accessibility: accessibility.valetValue
+        )
     }
     
-    public func set<T: Encodable>(_ value: T, forKey key: String) throws(CustomError) {
+    public func set<T: Encodable>(object: T, forKey key: String) throws(CustomError) {
         do {
-            let data = try JSONEncoder().encode(value)
+            let data = try JSONEncoder().encode(object)
             try valet.setObject(data, forKey: key)
         } catch {
             if let mappedError = map(error: error) {
@@ -39,11 +45,33 @@ public final class ValetStorage: KeychainStorageProtocol {
         }
     }
     
-    public func loadValue<T: Decodable>(forKey key: String) throws(CustomError) -> T? {
+    public func set(string: String, forKey key: String) throws(CustomError) {
+        do {
+            try valet.setString(string, forKey: key)
+        } catch {
+            if let mappedError = map(error: error) {
+                throw mappedError
+            }
+        }
+    }
+    
+    public func object<T: Decodable>(forKey key: String) throws(CustomError) -> T? {
         
         do {
             let data = try valet.object(forKey: key)
             return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            if let mappedError = map(error: error) {
+                throw mappedError
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    public func string(forKey key: String) throws(CustomError) -> String? {
+        do {
+            return try valet.string(forKey: key)
         } catch {
             if let mappedError = map(error: error) {
                 throw mappedError
