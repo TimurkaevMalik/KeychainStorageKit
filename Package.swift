@@ -8,7 +8,7 @@ let package = Package(
     name: packageName,
     platforms: [.iOS(.v14)],
     products: [
-        .library(name: packageName, targets: [packageName]),
+        .library(name: packageName, type: .dynamic, targets: [packageName]),
     ],
     dependencies: [
         .make(from: SPMDependency.loggingKit),
