@@ -4,6 +4,7 @@
 import PackageDescription
 
 let packageName = "KeychainStorageKit"
+
 let package = Package(
     name: packageName,
     platforms: [.iOS(.v14)],
@@ -12,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .make(from: SPMDependency.loggingKit),
-        .make(from: SPMDependency.valet)
+        .make(from: SPMDependency.valetWrapper)
     ],
     targets: [
         .target(
@@ -23,8 +24,8 @@ let package = Package(
                     package: SPMDependency.loggingKit.name
                 ),
                 .product(
-                    name: SPMDependency.valet.name,
-                    package: SPMDependency.valet.name
+                    name: SPMDependency.valetWrapper.name,
+                    package: SPMDependency.valetWrapper.name
                 )
             ]
         ),
@@ -33,10 +34,10 @@ let package = Package(
 
 /// MARK: - Dependencies
 fileprivate enum SPMDependency {
-    static let valet = PackageModel(
-        name: "Valet",
-        url: "https://github.com/square/Valet.git",
-        requirement: .version(.init(5, 0, 0))
+    static let valetWrapper = PackageModel(
+        name: "ValetWrapper",
+        url: "https://github.com/TimurkaevMalik/ValetWrapper.git",
+        requirement: .version(.init(1, 1, 0))
     )
     
     static let loggingKit = PackageModel(
