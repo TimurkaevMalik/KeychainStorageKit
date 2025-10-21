@@ -1,13 +1,13 @@
 {
-  "originHash" : "c739b5630240bd8dcad2294f639b987f57776c2febd5759b636f2ec469d128b9",
+  "originHash" : "5fe4a2c1abe9c4991e260ae148e1a7fa8995354dfbb9f8c6c6d6d93fc1fb5ea1",
   "pins" : [
     {
       "identity" : "loggingkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TimurkaevMalik/LoggingKit.git",
       "state" : {
-        "revision" : "d2ce234ac6df402d0f2b965adc6952fa63536a73",
-        "version" : "1.0.0"
+        "revision" : "21671dff7251bb8bb062eccf87b5896014851867",
+        "version" : "1.2.0"
       }
     },
     {
