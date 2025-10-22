@@ -1,5 +1,5 @@
 {
-  "originHash" : "1d06e34f1797467a5808c39ca1932750cdc51cbee5dc7e10dc7958a4cd542fec",
+  "originHash" : "9090b20280533ce067e97f52a24a54f3af4f9649ff3010bb99a2c11cd4c7b9f9",
   "pins" : [
     {
       "identity" : "loggingkit",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/TimurkaevMalik/LoggingKit.git",
       "state" : {
         "revision" : "21671dff7251bb8bb062eccf87b5896014851867",
-        "version" : "1.2.0"
+        "version" : "1.3.0"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TimurkaevMalik/ValetWrapper.git",
       "state" : {
-        "revision" : "40d9c4c32fde28884baa856b60e8872828f87d28",
-        "version" : "1.1.0"
+        "revision" : "7632563e64f402cfd45697cf6f623e9fcc47dcf1",
+        "version" : "1.2.0"
       }
     }
   ],

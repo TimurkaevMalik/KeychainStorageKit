@@ -37,13 +37,13 @@ fileprivate enum SPMDependency {
     static let valetWrapper = PackageModel(
         name: "ValetWrapper",
         url: "https://github.com/TimurkaevMalik/ValetWrapper.git",
-        requirement: .version(.init(1, 1, 0))
+        requirement: .version(.init(1, 2, 0))
     )
     
     static let loggingKit = PackageModel(
         name: "LoggingKit",
         url: "https://github.com/TimurkaevMalik/LoggingKit.git",
-        requirement: .version(.init(1, 0, 0))
+        requirement: .version(.init(1, 3, 0))
     )
 }
 
