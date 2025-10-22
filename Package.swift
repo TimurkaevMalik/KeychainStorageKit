@@ -9,6 +9,7 @@ let package = Package(
     name: packageName,
     platforms: [.iOS(.v14)],
     products: [
+        
         .library(name: packageName, type: .dynamic, targets: [packageName]),
     ],
     dependencies: [
