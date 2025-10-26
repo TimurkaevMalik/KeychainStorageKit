@@ -4,13 +4,14 @@
 import PackageDescription
 
 let packageName = "KeychainStorageKit"
+let packageNameDynamic = packageName + "-Dynamic"
 
 let package = Package(
     name: packageName,
     platforms: [.iOS(.v14)],
     products: [
-        
-        .library(name: packageName, type: .dynamic, targets: [packageName]),
+        .library(name: packageName, targets: [packageName]),
+        .library(name: packageNameDynamic, type: .dynamic, targets: [packageName]),
     ],
     dependencies: [
         .make(from: SPMDependency.loggingKit),
