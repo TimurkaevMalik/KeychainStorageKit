@@ -15,20 +15,14 @@ let package = Package(
     ],
     dependencies: [
         .make(from: SPMDependency.loggingKit),
-        .make(from: SPMDependency.valetWrapper)
+        .make(from: SPMDependency.valet)
     ],
     targets: [
         .target(
             name: packageName,
             dependencies: [
-                .product(
-                    name: SPMDependency.loggingKit.name,
-                    package: SPMDependency.loggingKit.name
-                ),
-                .product(
-                    name: SPMDependency.valetWrapper.name,
-                    package: SPMDependency.valetWrapper.name
-                )
+                .product(SPMDependency.loggingKit.name),
+                .product(SPMDependency.valet.name)
             ]
         ),
     ]
@@ -36,10 +30,10 @@ let package = Package(
 
 /// MARK: - Dependencies
 fileprivate enum SPMDependency {
-    static let valetWrapper = PackageModel(
-        name: "ValetWrapper",
-        url: "https://github.com/TimurkaevMalik/ValetWrapper.git",
-        requirement: .version(.init(1, 2, 0))
+    static let valet = PackageModel(
+        name: "Valet",
+        url: "https://github.com/square/Valet.git",
+        requirement: .version(.init(5, 0, 0))
     )
     
     static let loggingKit = PackageModel(
@@ -103,5 +97,12 @@ fileprivate extension Package.Dependency {
         case .branch:
                 return .package(url: url, branch: requirement)
         }
+    }
+}
+
+/// MARK: - Target.Dependency
+fileprivate extension Target.Dependency {
+    static func product(_ name: String) -> Self {
+        .product(name: name, package: name)
     }
 }
